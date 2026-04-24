@@ -1,1 +1,0 @@
-link: https://josuepadron.github.io/FireBase/
