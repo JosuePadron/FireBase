@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>CRUD Firebase</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>CRUD de Productos de Josueson</h1>
+
+    <div class="formulario">
+        <input type="text" id="nombre" placeholder="Nombre del producto">
+        <input type="number" id="precio" placeholder="Precio">
+        <button onclick="agregar()">Agregar</button>
+    </div>
+
+    <br>
+
+    <input type="text" id="buscar" placeholder="Buscar..." onkeyup="filtrar()">
+
+    <br><br>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="tabla"></tbody>
+    </table>
+
+    <script src="app.js" type="module"></script>
+
+</body>
+</html>
