@@ -1,38 +1,53 @@
+<?php
+    // Variables dinámicas (PHP) para cumplir con el requisito 1 de la práctica
+    $titulo_app = "TRUE2FK Inventory"; // Nombre de tu marca Y2K
+    $usuario_logueado = "Josue Padron"; 
+    $fecha_actual = date("d/m/Y");
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>CRUD Firebase</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo $titulo_app; ?></title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h1>CRUD de Productos de Josueson</h1>
+    <header class="app-header">
+        <h1><?php echo $titulo_app; ?></h1>
+        <div class="user-info">
+            <span>Bienvenido, <strong><?php echo $usuario_logueado; ?></strong></span>
+            <small>Fecha: <?php echo $fecha_actual; ?></small>
+        </div>
+    </header>
 
-    <div class="formulario">
-        <input type="text" id="nombre" placeholder="Nombre del producto">
-        <input type="number" id="precio" placeholder="Precio">
-        <button onclick="agregar()">Agregar</button>
-    </div>
+    <main class="app-container">
+        <section class="formulario">
+            <input type="text" id="nombre" placeholder="Producto (ej. Baggy Jeans)">
+            <input type="number" id="precio" placeholder="Precio ($)">
+            <button id="btnAgregar" class="btn-main">Añadir al Stock</button>
+        </section>
 
-    <br>
+        <section class="busqueda-container">
+            <input type="text" id="buscar" placeholder="🔍 Buscar en inventario...">
+        </section>
 
-    <input type="text" id="buscar" placeholder="Buscar..." onkeyup="filtrar()">
-
-    <br><br>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Precio</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody id="tabla"></tbody>
-    </table>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla">
+                    </tbody>
+            </table>
+        </div>
+    </main>
 
     <script src="app.js" type="module"></script>
-
 </body>
 </html>

@@ -1,78 +1,116 @@
+/* Variables de color para un diseño consistente */
+:root {
+    --primary: #2f855a;
+    --primary-dark: #276749;
+    --bg-gradient: linear-gradient(180deg, #e9f7ef 0%, #f5fcf7 100%);
+    --white: #ffffff;
+    --text: #1f4d3d;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    background: linear-gradient(180deg, #e9f7ef 0%, #f5fcf7 100%);
-    color: #1f4d3d;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: var(--bg-gradient);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
 }
 
-h1 {
+/* Encabezado tipo App [cite: 37, 40] */
+.app-header {
+    background: var(--primary);
+    color: var(--white);
+    padding: 20px;
     text-align: center;
-    color: #22543d;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-.formulario {
-    text-align: center;
+.app-header h1 {
+    margin: 0;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.user-info {
+    margin-top: 5px;
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+/* Contenedor Principal responsivo [cite: 38] */
+.app-container {
+    padding: 15px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Inputs y Botones Touch-Friendly [cite: 42, 43] */
+.formulario, .busqueda-container {
+    display: flex;
+    flex-direction: column; /* Apilado por defecto para móvil */
+    gap: 12px;
     margin-bottom: 20px;
 }
 
 input {
-    padding: 10px;
-    margin: 5px;
+    padding: 14px; /* Más grande para fácil toque */
+    font-size: 1rem;
     border: 1px solid #9cc7a9;
-    border-radius: 6px;
-    background: #f8fcf8;
-    color: #1f4d3d;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 10px;
+    background: var(--white);
 }
 
-input:focus {
-    border-color: #57a773;
-    box-shadow: 0 0 0 3px rgba(87, 167, 115, 0.16);
-    outline: none;
-}
-
-button {
-    padding: 10px 16px;
-    cursor: pointer;
+.btn-main {
+    padding: 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    background: var(--primary);
+    color: var(--white);
     border: none;
-    border-radius: 8px;
-    background: #2f855a;
-    color: white;
-    font-weight: 600;
-    box-shadow: 0 4px 12px rgba(47, 133, 90, 0.18);
-    transition: background 0.2s ease, transform 0.2s ease;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-button:hover {
-    background: #276749;
-    transform: translateY(-1px);
+/* Control de Tablas  */
+.table-container {
+    background: var(--white);
+    border-radius: 15px;
+    overflow-x: auto; /* Scroll lateral solo en la tabla si es necesario */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 8px 24px rgba(79, 134, 110, 0.15);
-}
-
-th, td {
-    padding: 12px 14px;
-    border-bottom: 1px solid #d7e7db;
-    text-align: center;
+    min-width: 320px;
 }
 
 th {
-    background: #2f855a;
-    color: white;
-}
-
-tr:nth-child(even) {
     background: #f0faf2;
+    padding: 12px;
+    font-size: 0.8rem;
+    text-align: left;
+    border-bottom: 2px solid #e3f4e6;
 }
 
-tr:hover {
-    background: #e3f4e6;
+td {
+    padding: 15px 12px;
+    border-bottom: 1px solid #f0faf2;
+}
+
+/* Media Query para pantallas más grandes (Escritorio) [cite: 32] */
+@media (min-width: 600px) {
+    .formulario {
+        flex-direction: row; /* Se alinean horizontalmente en PC */
+    }
+    
+    .formulario input {
+        flex: 1;
+    }
+    
+    .app-header h1 {
+        font-size: 2rem;
+    }
 }
