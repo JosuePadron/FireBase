@@ -1,116 +1,130 @@
-/* Variables de color para un diseño consistente */
 :root {
     --primary: #2f855a;
     --primary-dark: #276749;
-    --bg-gradient: linear-gradient(180deg, #e9f7ef 0%, #f5fcf7 100%);
+    --bg: #e9f7ef;
     --white: #ffffff;
     --text: #1f4d3d;
 }
 
 body {
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
     margin: 0;
-    padding: 0;
-    background: var(--bg-gradient);
+    background: var(--bg);
     color: var(--text);
-    -webkit-font-smoothing: antialiased;
 }
 
-/* Encabezado tipo App [cite: 37, 40] */
 .app-header {
     background: var(--primary);
     color: var(--white);
     padding: 20px;
     text-align: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-.app-header h1 {
-    margin: 0;
-    font-size: 1.4rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.user-info {
-    margin-top: 5px;
-    font-size: 0.85rem;
-    opacity: 0.9;
-}
-
-/* Contenedor Principal responsivo [cite: 38] */
 .app-container {
-    padding: 15px;
-    max-width: 800px;
+    padding: 20px;
+    max-width: 800px; /* Evita que se estire demasiado en la computadora */
     margin: 0 auto;
 }
 
-/* Inputs y Botones Touch-Friendly [cite: 42, 43] */
-.formulario, .busqueda-container {
+/* Diseño del Formulario */
+.formulario {
     display: flex;
-    flex-direction: column; /* Apilado por defecto para móvil */
-    gap: 12px;
-    margin-bottom: 20px;
+    flex-direction: column; /* Apilado en celular */
+    gap: 10px;
+    margin-bottom: 15px;
 }
 
 input {
-    padding: 14px; /* Más grande para fácil toque */
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
     font-size: 1rem;
-    border: 1px solid #9cc7a9;
-    border-radius: 10px;
-    background: var(--white);
 }
 
+/* Botón Touch-Friendly[cite: 3] */
 .btn-main {
-    padding: 15px;
-    font-size: 1rem;
-    font-weight: bold;
+    padding: 14px;
     background: var(--primary);
-    color: var(--white);
+    color: white;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
+    font-size: 1rem;
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    font-weight: bold;
 }
 
-/* Control de Tablas  */
+/* Estilo del mensaje de guardado */
+.mensaje-alerta {
+    background: #d4edda;
+    color: #155724;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+    border: 1px solid #c3e6cb;
+}
+
+/* --- ESTILOS DE LA TABLA --- */
 .table-container {
-    background: var(--white);
-    border-radius: 15px;
-    overflow-x: auto; /* Scroll lateral solo en la tabla si es necesario */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-table {
+.tabla-inventario {
     width: 100%;
     border-collapse: collapse;
-    min-width: 320px;
 }
 
-th {
-    background: #f0faf2;
+.tabla-inventario th, .tabla-inventario td {
     padding: 12px;
-    font-size: 0.8rem;
     text-align: left;
-    border-bottom: 2px solid #e3f4e6;
+    border-bottom: 1px solid #eee;
 }
 
-td {
-    padding: 15px 12px;
-    border-bottom: 1px solid #f0faf2;
+.btn-edit, .btn-delete {
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background: #f8f8f8;
 }
 
-/* Media Query para pantallas más grandes (Escritorio) [cite: 32] */
+/* --- MEDIA QUERIES PARA ADAPTAR EL DISEÑO[cite: 3] --- */
+
+/* 1. Ajustes para Escritorio (Pantallas grandes) */
 @media (min-width: 600px) {
     .formulario {
-        flex-direction: row; /* Se alinean horizontalmente en PC */
+        flex-direction: row; /* Elementos en línea horizontal */
     }
-    
     .formulario input {
-        flex: 1;
+        flex: 1; /* Los inputs ocupan el espacio disponible */
     }
-    
-    .app-header h1 {
-        font-size: 2rem;
+}
+
+/* 2. Ajustes para Celular (Para cumplir con "Nada de tablas gigantes")[cite: 3] */
+@media (max-width: 599px) {
+    .tabla-inventario thead {
+        display: none; /* Ocultamos los encabezados de la tabla */
+    }
+    .tabla-inventario tr {
+        display: block;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        padding: 15px;
+    }
+    .tabla-inventario td {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: none;
+        padding: 8px 0;
+    }
+    /* Agrega el texto "Producto:", "Precio:" usando el data-label del HTML */
+    .tabla-inventario td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: var(--primary);
     }
 }
